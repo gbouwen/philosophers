@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/02/26 12:17:49 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/02/26 14:24:28 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 SOURCE_C =	main.c \
 			helper/ft_atoi.c \
-			validate_arguments/validate_arguments.c \
+			helper/init_struct.c \
+			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c
 

@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/02/26 12:22:41 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/02/26 14:26:04 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,24 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef struct	s_data
+{
+	int	number_of_philosophers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_of_times_to_eat;
+}				t_data;
 
 // validate_arguments
 
-int		validate_all_arguments(int ac, char **av);
+int		validate_all_arguments(t_data *data, int ac, char **av);
 void	incorrect_amount_of_arguments(char *arg);
-int		validate_single_argument(char *arg, int index);
+int		validate_single_argument(t_data *data, char *arg, int index);
 
 // helper
 
 int		ft_atoi(const char *str);
+void	init_struct(t_data *data);
 
 #endif
