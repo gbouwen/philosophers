@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/02/26 14:26:04 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/02/26 14:37:36 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ typedef struct	s_data
 int		validate_all_arguments(t_data *data, int ac, char **av);
 void	incorrect_amount_of_arguments(char *arg);
 int		validate_single_argument(t_data *data, char *arg, int index);
+
+// execution
+
+void	execution_loop(t_data *data);
 
 // helper
 

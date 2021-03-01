@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/02/26 14:24:28 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/02/26 14:38:12 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SOURCE_C =	main.c \
 			helper/init_struct.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
-			validate_arguments/validate_single_argument.c
+			validate_arguments/validate_single_argument.c \
+			execution/execution_loop.c
 
 OBJECT_FILES = $(SOURCE_C:.c=.o)
 

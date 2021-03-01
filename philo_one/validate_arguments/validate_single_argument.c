@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 12:16:44 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/02/26 14:27:31 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/01 12:07:07 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	add_to_struct(t_data *data, int value, int index)
 	if (index == 1)
 		data->number_of_philosophers = value;
 	else if (index == 2)
-		data->time_to_die = value;
+		data->time_to_die = value * 1000;
 	else if (index == 3)
-		data->time_to_eat = value;
+		data->time_to_eat = value * 1000;
 	else if (index == 4)
-		data->time_to_sleep = value;
+		data->time_to_sleep = value * 1000;
 	else if (index == 5)
 		data->number_of_times_to_eat = value;
 }
