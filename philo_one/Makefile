@@ -6,20 +6,22 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/02/26 14:38:12 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/01 15:24:05 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_one
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -pthread
 SOURCE_C =	main.c \
 			helper/ft_atoi.c \
-			helper/init_struct.c \
+			helper/ft_calloc.c \
+			helper/init_functions.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
-			execution/execution_loop.c
+			execution/execution.c \
+			execution/philosopher_actions.c
 
 OBJECT_FILES = $(SOURCE_C:.c=.o)
 

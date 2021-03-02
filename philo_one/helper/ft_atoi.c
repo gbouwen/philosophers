@@ -6,9 +6,11 @@
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 13:03:13 by gbouwen       #+#    #+#                 */
-/*   Updated: 2019/11/18 13:15:37 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/01 12:27:08 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../philo_one.h"
 
 int		ft_atoi(const char *str)
 {

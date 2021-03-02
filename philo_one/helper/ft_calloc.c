@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   init_struct.c                                      :+:    :+:            */
+/*   ft_calloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
+/*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/02/26 14:25:55 by gbouwen       ########   odam.nl         */
+/*   Created: 2019/10/31 10:32:47 by gbouwen       #+#    #+#                 */
+/*   Updated: 2021/03/01 12:26:51 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void	init_struct(t_data *data)
+void		*ft_calloc(size_t count, size_t size)
 {
-	data->number_of_philosophers = 0;
-	data->time_to_die = 0;
-	data->time_to_eat = 0;
-	data->time_to_sleep = 0;
-	data->number_of_times_to_eat = 0;
+	void	*space;
+	size_t	i;
+
+	space = (void *)malloc(count * size);
+	if (!space)
+		return (0);
+	i = 0;
+	while (i < (count * size))
+	{
+		((char *)space)[i] = 0;
+		i++;
+	}
+	return (space);
 }
