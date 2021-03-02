@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 14:56:27 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/02 16:05:57 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static void	create_threads(pthread_t *threads, int amount, t_philo *philo)
 	index = 0;
 	while (index < amount)
 	{
-		pthread_create(&threads[index], NULL, philosopher, philo);
-		philo = philo->next;
+		pthread_create(&threads[index], NULL, philosopher, &philo[index]);
 		index++;
 	}
 }

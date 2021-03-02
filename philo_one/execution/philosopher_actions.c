@@ -6,11 +6,42 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 14:53:10 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/02 15:45:46 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
+
+void		philo_sleep(t_philo *philo)
+{
+	printf("philosopher %d is sleeping\n", philo->id);
+	usleep(philo->data->time_to_sleep);
+	philo->status = THINKING;
+}
+
+void		put_forks(t_philo *philo, int left, int right)
+{
+	pthread_mutex_unlock(&philo->data->forks[left]);
+	pthread_mutex_unlock(&philo->data->forks[right]);
+	philo->status = SLEEPING;
+}
+
+void		philo_eat(t_philo *philo)
+{
+	printf("philosopher %d is eating\n", philo->id);
+	usleep(philo->data->time_to_eat);
+}
+
+void		take_forks(t_philo *philo, int left, int right)
+{
+	pthread_mutex_lock(&philo->data->mutex);
+	pthread_mutex_lock(&philo->data->forks[left]);
+	printf("philosopher %d has taken left fork\n", philo->id);
+	pthread_mutex_lock(&philo->data->forks[right]);
+	pthread_mutex_unlock(&philo->data->mutex);
+	printf("philosopher %d has taken right fork\n", philo->id);
+	philo->status = EATING;
+}
 
 void		*philosopher(void *arg)
 {
@@ -23,15 +54,14 @@ void		*philosopher(void *arg)
 	right = (philo->id + 1) % 5;
 	while (1)
 	{
-		printf("this is philosopher %d speaking\n", philo->id);
-		printf("taking this fork %d\n", left);
-		printf("taking this fork %d\n", right);
-		usleep(100000);
-   /*     take_forks(data, left, right);*/
-		/*if (data->state[data->index] == EATING)*/
-			/*philo_eat(data);*/
-		/*put_forks(data, left, right);*/
-		/*philo_sleep(data);*/
+		take_forks(philo, left, right);
+		if (philo->status == EATING)
+			philo_eat(philo);
+		put_forks(philo, left, right);
+		if (philo->status == SLEEPING)
+			philo_sleep(philo);
+		if (philo->status == THINKING)
+			printf("philosopher %d is thinking\n", philo->id);
 	}
 	return (NULL);
 }

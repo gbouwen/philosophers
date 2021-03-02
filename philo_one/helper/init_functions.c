@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 14:58:56 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/02 16:04:50 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_struct(t_data *data)
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = 0;
 	data->forks = NULL;
+	pthread_mutex_init(&data->mutex, NULL);
 	data->dead = 0;
 }
 
@@ -44,24 +45,18 @@ int		init_forks(t_data *data)
 t_philo		*init_philosophers(t_data *data)
 {
 	t_philo	*philo;
-	t_philo	*begin;
 	int		index;
 
-	philo = malloc(sizeof(t_philo));
+	philo = ft_calloc(data->number_of_philosophers, sizeof(t_philo));
 	if (!philo)
 		return (NULL);
-	begin = philo;
 	index = 0;
 	while (index < data->number_of_philosophers)
 	{
-		philo->id = index + 1;
-		philo->data = data;
-		philo->next = malloc(sizeof(t_philo));
-		if (!philo->next)
-			return (NULL);
-		philo = philo->next;
+		philo[index].id = index + 1;
+		philo[index].data = data;
+		philo[index].status = THINKING;
 		index++;
 	}
-	philo->next = NULL;
-	return (begin);
+	return (philo);
 }

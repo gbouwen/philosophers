@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 15:00:07 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/02 15:32:02 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_data
 	int				time_to_sleep;
 	int				number_of_times_to_eat;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	mutex;
 	int				dead;
 }				t_data;
 
@@ -35,7 +36,7 @@ typedef struct	s_philo
 {
 	int				id;
 	t_data			*data;
-	struct s_philo	*next;
+	int				status;
 }				t_philo;
 
 # define THINKING 0
