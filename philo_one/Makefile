@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/01 15:24:05 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/03 16:24:04 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,12 @@ SOURCE_C =	main.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
 			execution/execution.c \
-			execution/philosopher_actions.c
+			execution/philosopher.c \
+			execution/fork_actions.c \
+			execution/philo_eat.c \
+			execution/philo_sleep.c \
+			execution/philo_think.c \
+			execution/get_time_in_ms.c
 
 OBJECT_FILES = $(SOURCE_C:.c=.o)
 

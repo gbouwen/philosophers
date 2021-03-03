@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 15:32:02 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/03 16:35:58 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,31 @@
 
 typedef struct	s_data
 {
-	int				number_of_philosophers;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				number_of_times_to_eat;
+	unsigned int	number_of_philosophers;
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	unsigned int	number_of_times_to_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	mutex;
 	int				dead;
 }				t_data;
 
-typedef struct	s_philo
+typedef struct			s_philo
 {
-	int				id;
-	t_data			*data;
-	int				status;
-}				t_philo;
+	int					id;
+	t_data				*data;
+	int					status;
+	struct timeval		start;
+	struct timeval		now;
+	unsigned long		time;
+}						t_philo;
 
 # define THINKING 0
 # define EATING 1
 # define SLEEPING 2
+# define TRUE 3
+# define FALSE 4
 
 // validate_arguments
 
@@ -53,6 +58,12 @@ int		validate_single_argument(t_data *data, char *arg, int index);
 
 int		execution(t_data *data, t_philo *philo);
 void	*philosopher(void *data);
+void	take_forks(t_philo *philo, int left, int right);
+void	drop_forks(t_philo *philo, int left, int right);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
+void	get_time_in_ms(t_philo *philo);
 
 // helper
 
