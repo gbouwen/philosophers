@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 16:21:45 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 16:33:07 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		*philosopher(void *arg)
 			philo_sleep(philo);
 		if (philo->status == THINKING && philo->data->dead == 0)
 			philo_think(philo);
-		if (philo->status == DEAD)
+		if (philo->status == DEAD && philo->data->dead == 1)
 		{
 			get_total_time_in_ms(philo->data);
 			printf("%lu - [philosopher %d] died\n", philo->data->total_time, philo->id);
