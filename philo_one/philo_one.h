@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 15:50:29 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 16:18:44 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void			ft_sleep(unsigned long time);
 void			get_total_time_in_ms(t_data *data);
 unsigned long	get_time_in_ms(void);
 int				check_alive(t_philo *philo);
+void			destroy_mutexes(t_data *data);
 
 #endif

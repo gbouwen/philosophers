@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_alive.c                                      :+:    :+:            */
+/*   destroy_mutexes.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/04 15:24:40 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 16:10:15 by gbouwen       ########   odam.nl         */
+/*   Created: 2021/03/04 16:11:35 by gbouwen       #+#    #+#                 */
+/*   Updated: 2021/03/04 16:19:02 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-int	check_alive(t_philo *philo)
+void	destroy_mutexes(t_data *data)
 {
-	unsigned long	now;
-	unsigned long	difference;
+	unsigned int	index;
 
-	now = get_time_in_ms();
-	difference = now - philo->time;
-	if (difference >= philo->data->time_to_die)
+	pthread_mutex_destroy(&data->mutex);
+	index = 0;
+	while (index < data->number_of_philosophers)
 	{
-		philo->status = DEAD;
-		philo->data->dead++;
-		return (0);
+		pthread_mutex_destroy(&data->forks[index]);
+		index++;
 	}
-	return (1);
 }
