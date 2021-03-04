@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 16:19:08 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:22:12 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	wait_for_threads(pthread_t *threads, int amount)
 	}
 }
 
-int			execution(t_data *data, t_philo *philo)
+int	execution(t_data *data, t_philo *philo)
 {
 	pthread_t	*threads;
 

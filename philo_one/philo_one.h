@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 16:18:44 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:34:34 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
 	unsigned int	number_of_philosophers;
 	unsigned long	time_to_die;
@@ -32,15 +32,15 @@ typedef struct	s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	mutex;
 	int				dead;
-}				t_data;
+}	t_data;
 
-typedef struct			s_philo
+typedef struct s_philo
 {
 	int					id;
 	t_data				*data;
 	int					status;
 	unsigned long		time;
-}						t_philo;
+}	t_philo;
 
 # define THINKING 0
 # define EATING 1
@@ -49,19 +49,19 @@ typedef struct			s_philo
 
 // validate_arguments
 
-int		validate_all_arguments(t_data *data, int ac, char **av);
-void	incorrect_amount_of_arguments(char *arg);
-int		validate_single_argument(t_data *data, char *arg, int index);
+int				validate_all_arguments(t_data *data, int ac, char **av);
+void			incorrect_amount_of_arguments(char *arg);
+int				validate_single_argument(t_data *data, char *arg, int index);
 
 // execution
 
-int		execution(t_data *data, t_philo *philo);
-void	*philosopher(void *data);
-void	take_forks(t_philo *philo, int left, int right);
-void	drop_forks(t_philo *philo, int left, int right);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
+int				execution(t_data *data, t_philo *philo);
+void			*philosopher(void *data);
+void			take_forks(t_philo *philo, int left, int right);
+void			drop_forks(t_philo *philo, int left, int right);
+void			philo_eat(t_philo *philo);
+void			philo_sleep(t_philo *philo);
+void			philo_think(t_philo *philo);
 
 // helper
 

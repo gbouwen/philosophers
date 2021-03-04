@@ -6,13 +6,13 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:11:18 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 15:44:16 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:28:53 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void		take_forks(t_philo *philo, int left, int right)
+void	take_forks(t_philo *philo, int left, int right)
 {
 	pthread_mutex_lock(&philo->data->mutex);
 	if (check_alive(philo) == 0)
@@ -43,7 +43,7 @@ void		take_forks(t_philo *philo, int left, int right)
 	philo->status = EATING;
 }
 
-void		drop_forks(t_philo *philo, int left, int right)
+void	drop_forks(t_philo *philo, int left, int right)
 {
 	pthread_mutex_unlock(&philo->data->forks[left]);
 	pthread_mutex_unlock(&philo->data->forks[right]);

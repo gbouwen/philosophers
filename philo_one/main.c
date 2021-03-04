@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:42 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/02 16:05:43 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:32:12 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_data	data;
-	t_philo *philo;
+	t_philo	*philo;
 
 	init_struct(&data);
 	if (validate_all_arguments(&data, ac, av) == 0)

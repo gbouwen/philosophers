@@ -6,13 +6,13 @@
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/28 13:03:13 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/01 12:27:08 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:29:33 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;

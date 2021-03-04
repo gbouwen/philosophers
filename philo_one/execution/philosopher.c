@@ -6,21 +6,20 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 16:33:07 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:28:24 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void		*philosopher(void *arg)
+void	*philosopher(void *arg)
 {
-	t_philo			*philo;
-	int				left;
-	int				right;
+	t_philo	*philo;
+	int		left;
+	int		right;
 
 	philo = arg;
-	left = (philo->id + philo->data->number_of_philosophers - 1)
-										% philo->data->number_of_philosophers;
+	left = (philo->id + philo->data->number_of_philosophers - 1) % philo->data->number_of_philosophers;
 	right = (philo->id + 1) % philo->data->number_of_philosophers;
 	gettimeofday(&philo->data->start, NULL);
 	while (1)

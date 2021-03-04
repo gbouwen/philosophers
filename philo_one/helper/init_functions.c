@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 15:47:50 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:31:54 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ void	init_struct(t_data *data)
 	data->dead = 0;
 }
 
-int		init_forks(t_data *data)
+int	init_forks(t_data *data)
 {
 	unsigned int	index;
 
 	index = 0;
-	data->forks = ft_calloc(data->number_of_philosophers,
-													sizeof(pthread_mutex_t));
+	data->forks = ft_calloc(data->number_of_philosophers, sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (0);
 	while (index < data->number_of_philosophers)
@@ -43,7 +42,7 @@ int		init_forks(t_data *data)
 	return (1);
 }
 
-t_philo		*init_philosophers(t_data *data)
+t_philo	*init_philosophers(t_data *data)
 {
 	t_philo			*philo;
 	unsigned int	index;

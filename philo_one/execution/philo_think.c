@@ -6,13 +6,13 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:08:31 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 15:42:39 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:28:41 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void		philo_think(t_philo *philo)
+void	philo_think(t_philo *philo)
 {
 	if (check_alive(philo) == 0)
 		return ;

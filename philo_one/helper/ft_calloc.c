@@ -6,13 +6,13 @@
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/10/31 10:32:47 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/01 12:26:51 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:29:38 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void		*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	void	*space;
 	size_t	i;

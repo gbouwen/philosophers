@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:54:14 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/02/26 11:54:17 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 17:34:51 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ void	incorrect_amount_of_arguments(char *arg)
 	printf("[time_to_sleep] [number_of_times_each_philosopher_must_eat ");
 	printf("(optional)]\n");
 }
-
