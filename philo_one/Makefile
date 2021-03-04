@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/03 16:24:04 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/04 11:31:00 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SOURCE_C =	main.c \
 			helper/ft_atoi.c \
 			helper/ft_calloc.c \
 			helper/init_functions.c \
+			helper/ft_sleep.c \
+			helper/get_time_in_ms.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
@@ -25,8 +27,7 @@ SOURCE_C =	main.c \
 			execution/fork_actions.c \
 			execution/philo_eat.c \
 			execution/philo_sleep.c \
-			execution/philo_think.c \
-			execution/get_time_in_ms.c
+			execution/philo_think.c
 
 OBJECT_FILES = $(SOURCE_C:.c=.o)
 

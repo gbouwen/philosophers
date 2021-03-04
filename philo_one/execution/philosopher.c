@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/03 16:38:55 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 11:23:21 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,19 @@ void		*philosopher(void *arg)
 	gettimeofday(&philo->start, NULL);
 	while (1)
 	{
-		if (philo->status == THINKING)
+		if (philo->status == THINKING && philo->data->dead == FALSE)
 			take_forks(philo, left, right);
-		if (philo->status == EATING)
+		if (philo->status == EATING && philo->data->dead == FALSE)
 		{
 			philo_eat(philo);
 			drop_forks(philo, left, right);
 		}
-		if (philo->status == SLEEPING)
+		if (philo->status == SLEEPING && philo->data->dead == FALSE)
 			philo_sleep(philo);
-		if (philo->status == THINKING)
+		if (philo->status == THINKING && philo->data->dead == FALSE)
 			philo_think(philo);
+		if (philo->data->dead == TRUE)
+			return (NULL);
 	}
 	return (NULL);
 }

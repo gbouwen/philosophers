@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/03 16:35:58 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 13:38:29 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	drop_forks(t_philo *philo, int left, int right);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
-void	get_time_in_ms(t_philo *philo);
 
 // helper
 
@@ -72,5 +71,7 @@ void	*ft_calloc(size_t count, size_t size);
 void	init_struct(t_data *data);
 int		init_forks(t_data *data);
 t_philo	*init_philosophers(t_data *data);
+void	ft_sleep(unsigned long time);
+void	get_time_in_ms(t_philo *philo);
 
 #endif
