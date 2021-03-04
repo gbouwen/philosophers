@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 13:54:45 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 15:50:29 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct	s_data
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
 	unsigned int	number_of_times_to_eat;
+	struct timeval	start;
+	unsigned long	total_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	mutex;
 	int				dead;
@@ -37,16 +39,13 @@ typedef struct			s_philo
 	int					id;
 	t_data				*data;
 	int					status;
-	struct timeval		start;
-	struct timeval		now;
 	unsigned long		time;
 }						t_philo;
 
 # define THINKING 0
 # define EATING 1
 # define SLEEPING 2
-# define TRUE 3
-# define FALSE 4
+# define DEAD 3
 
 // validate_arguments
 
@@ -66,12 +65,14 @@ void	philo_think(t_philo *philo);
 
 // helper
 
-int		ft_atoi(const char *str);
-void	*ft_calloc(size_t count, size_t size);
-void	init_struct(t_data *data);
-int		init_forks(t_data *data);
-t_philo	*init_philosophers(t_data *data);
-void	ft_sleep(unsigned long time);
-void	get_total_time_in_ms(t_philo *philo);
+int				ft_atoi(const char *str);
+void			*ft_calloc(size_t count, size_t size);
+void			init_struct(t_data *data);
+int				init_forks(t_data *data);
+t_philo			*init_philosophers(t_data *data);
+void			ft_sleep(unsigned long time);
+void			get_total_time_in_ms(t_data *data);
+unsigned long	get_time_in_ms(void);
+int				check_alive(t_philo *philo);
 
 #endif

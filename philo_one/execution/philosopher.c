@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 13:52:20 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 15:58:21 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,28 @@ void		*philosopher(void *arg)
 	left = (philo->id + philo->data->number_of_philosophers - 1)
 										% philo->data->number_of_philosophers;
 	right = (philo->id + 1) % philo->data->number_of_philosophers;
-	gettimeofday(&philo->start, NULL);
+	gettimeofday(&philo->data->start, NULL);
 	while (1)
 	{
-		if (philo->status == THINKING && philo->data->dead == FALSE)
+		philo->time = get_time_in_ms();
+		if (philo->status == THINKING && philo->data->dead == 0)
 			take_forks(philo, left, right);
-		if (philo->status == EATING && philo->data->dead == FALSE)
+		if (philo->status == EATING && philo->data->dead == 0)
 		{
 			philo_eat(philo);
 			drop_forks(philo, left, right);
 		}
-		if (philo->status == SLEEPING && philo->data->dead == FALSE)
+		if (philo->status == SLEEPING && philo->data->dead == 0)
 			philo_sleep(philo);
-		if (philo->status == THINKING && philo->data->dead == FALSE)
+		if (philo->status == THINKING && philo->data->dead == 0)
 			philo_think(philo);
-		if (philo->data->dead == TRUE)
-			return (NULL);
+		if (philo->status == DEAD)
+		{
+			printf("rip to homie %d\n", philo->id);
+			break ;
+		}
+		if (philo->data->dead > 0)
+			break ;
 	}
 	return (NULL);
 }

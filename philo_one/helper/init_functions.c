@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/03 16:36:33 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 15:47:50 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	init_struct(t_data *data)
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = 0;
+	data->total_time = 0;
 	data->forks = NULL;
 	pthread_mutex_init(&data->mutex, NULL);
-	data->dead = FALSE;
+	data->dead = 0;
 }
 
 int		init_forks(t_data *data)

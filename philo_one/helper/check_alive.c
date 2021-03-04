@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   philo_eat.c                                        :+:    :+:            */
+/*   check_alive.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
+/*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/03 15:07:35 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 15:40:40 by gbouwen       ########   odam.nl         */
+/*   Created: 2021/03/04 15:24:40 by gbouwen       #+#    #+#                 */
+/*   Updated: 2021/03/04 15:58:15 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-void			philo_eat(t_philo *philo)
+int	check_alive(t_philo *philo)
 {
-	if (check_alive(philo) == 0)
-		return ;
-	get_total_time_in_ms(philo->data);
-	printf("%lu - [philosopher %d] is eating\n", philo->data->total_time, philo->id);
-	ft_sleep(philo->data->time_to_eat * 1000);
+	unsigned long	now;
+	unsigned long	difference;
+
+	now = get_time_in_ms();
+	difference = now - philo->time;
+	if (difference >= philo->data->time_to_die)
+	{
+		philo->status = DEAD;
+		philo->data->dead++;
+		return (0);
+	}
+	return (1);
 }

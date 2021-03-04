@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/04 11:31:00 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/04 15:37:04 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SOURCE_C =	main.c \
 			helper/init_functions.c \
 			helper/ft_sleep.c \
 			helper/get_time_in_ms.c \
+			helper/check_alive.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
