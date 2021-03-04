@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:11:18 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 10:48:00 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/04 13:53:39 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void		take_forks(t_philo *philo, int left, int right)
 {
 	pthread_mutex_lock(&philo->data->mutex);
 	pthread_mutex_lock(&philo->data->forks[left]);
-	get_time_in_ms(philo);
+	get_total_time_in_ms(philo);
 	printf("%lu - [philosopher %d] has taken a fork\n", philo->time, philo->id);
 	pthread_mutex_lock(&philo->data->forks[right]);
-	get_time_in_ms(philo);
+	get_total_time_in_ms(philo);
 	printf("%lu - [philosopher %d] has taken a fork\n", philo->time, philo->id);
 	pthread_mutex_unlock(&philo->data->mutex);
 	philo->status = EATING;
