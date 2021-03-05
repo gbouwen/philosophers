@@ -19,4 +19,5 @@ void	philo_eat(t_philo *philo)
 	get_total_time_in_ms(philo->data);
 	printf("%lu - [philosopher %d] is eating\n", philo->data->total_time, philo->id);
 	ft_sleep(philo->data->time_to_eat * 1000);
+	philo->times_eaten++;
 }

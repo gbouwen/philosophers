@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 17:34:34 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/05 12:42:56 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ typedef struct s_data
 	struct timeval	start;
 	unsigned long	total_time;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	mutex;
 	int				dead;
 }	t_data;
 
 typedef struct s_philo
 {
-	int					id;
+	unsigned int		id;
 	t_data				*data;
-	int					status;
+	unsigned int		times_eaten;
+	unsigned int		status;
 	unsigned long		time;
 }	t_philo;
 
@@ -57,8 +57,8 @@ int				validate_single_argument(t_data *data, char *arg, int index);
 
 int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
-void			take_forks(t_philo *philo, int left, int right);
-void			drop_forks(t_philo *philo, int left, int right);
+void			take_forks(t_philo *philo, unsigned int left, unsigned int right);
+void			drop_forks(t_philo *philo, unsigned int left, unsigned int right);
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
