@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:08:31 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 16:02:36 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:30:30 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	philo_think(t_philo *philo)
 {
-	print_message(philo->data, THINKING, philo->id);
+	print_message(philo, THINKING);
 }

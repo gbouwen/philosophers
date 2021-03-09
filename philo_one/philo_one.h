@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 16:12:30 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:28:58 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_data
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
-	unsigned int	number_of_times_to_eat;
+	int	number_of_times_to_eat;
 	struct timeval	start;
 	unsigned long	total_time;
 	pthread_mutex_t	*forks;
@@ -36,11 +36,11 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	unsigned int		id;
-	t_data				*data;
-	unsigned int		times_eaten;
-	unsigned int		status;
-	unsigned long		time_since_last_meal;
+	unsigned int	id;
+	t_data			*data;
+	int				times_eaten;
+	unsigned int	status;
+	unsigned long	time_since_last_meal;
 }	t_philo;
 
 # define THINKING 0
@@ -80,8 +80,6 @@ void			get_total_time_in_ms(t_data *data);
 unsigned long	get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
-void			print_message(t_data *data, int message_id,
-														unsigned int philo_id);
-
+void			print_message(t_philo *philo, int message_id);
 
 #endif
