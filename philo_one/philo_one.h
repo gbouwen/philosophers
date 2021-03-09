@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/05 12:42:56 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 15:59:39 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	struct timeval	start;
 	unsigned long	total_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
 	int				dead;
 }	t_data;
 
@@ -46,6 +47,7 @@ typedef struct s_philo
 # define EATING 1
 # define SLEEPING 2
 # define DEAD 3
+# define TAKEN_FORK 4
 
 // validate_arguments
 
@@ -57,8 +59,10 @@ int				validate_single_argument(t_data *data, char *arg, int index);
 
 int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
-void			take_forks(t_philo *philo, unsigned int left, unsigned int right);
-void			drop_forks(t_philo *philo, unsigned int left, unsigned int right);
+void			take_forks(t_philo *philo, unsigned int left,
+														unsigned int right);
+void			drop_forks(t_philo *philo, unsigned int left,
+														unsigned int right);
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
@@ -75,5 +79,8 @@ void			get_total_time_in_ms(t_data *data);
 unsigned long	get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
+void			print_message(t_data *data, int message_id,
+														unsigned int philo_id);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:11:18 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/05 12:48:36 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:00:56 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@ void	take_forks(t_philo *philo, unsigned int left, unsigned int right)
 	if (philo->id % 2 == 1)
 	{
 		pthread_mutex_lock(&philo->data->forks[right]);
-		get_total_time_in_ms(philo->data);
-		printf("%lu - [philosopher %d] has taken a [RIGHT] fork\n", philo->data->total_time, philo->id);
+		print_message(philo->data, TAKEN_FORK, philo->id);
 		pthread_mutex_lock(&philo->data->forks[left]);
-		get_total_time_in_ms(philo->data);
-		printf("%lu - [philosopher %d] has taken a [LEFT] fork\n", philo->data->total_time, philo->id);
+		print_message(philo->data, TAKEN_FORK, philo->id);
 	}
 	else
 	{
 		pthread_mutex_lock(&philo->data->forks[left]);
-		get_total_time_in_ms(philo->data);
-		printf("%lu - [philosopher %d] has taken a [LEFT] fork\n", philo->data->total_time, philo->id);
+		print_message(philo->data, TAKEN_FORK, philo->id);
 		pthread_mutex_lock(&philo->data->forks[right]);
-		get_total_time_in_ms(philo->data);
-		printf("%lu - [philosopher %d] has taken a [RIGHT] fork\n", philo->data->total_time, philo->id);
+		print_message(philo->data, TAKEN_FORK, philo->id);
 	}
-	if (check_alive(philo) == 0)
+	if (philo->data->dead == 1)
 	{
 		pthread_mutex_unlock(&philo->data->forks[left]);
 		pthread_mutex_unlock(&philo->data->forks[right]);
@@ -43,7 +39,6 @@ void	take_forks(t_philo *philo, unsigned int left, unsigned int right)
 
 void	drop_forks(t_philo *philo, unsigned int left, unsigned int right)
 {
-	philo->time = get_time_in_ms();
 	pthread_mutex_unlock(&philo->data->forks[left]);
 	pthread_mutex_unlock(&philo->data->forks[right]);
 	philo->status = SLEEPING;

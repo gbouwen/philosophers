@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/04 16:33:14 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/09 15:57:02 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SOURCE_C =	main.c \
 			helper/get_time_in_ms.c \
 			helper/check_alive.c \
 			helper/destroy_mutexes.c \
+			helper/print_message.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
