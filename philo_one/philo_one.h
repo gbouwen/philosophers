@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 15:59:39 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:12:30 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_philo
 	t_data				*data;
 	unsigned int		times_eaten;
 	unsigned int		status;
-	unsigned long		time;
+	unsigned long		time_since_last_meal;
 }	t_philo;
 
 # define THINKING 0
@@ -59,6 +59,7 @@ int				validate_single_argument(t_data *data, char *arg, int index);
 
 int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
+void			*monitor(void *philo);
 void			take_forks(t_philo *philo, unsigned int left,
 														unsigned int right);
 void			drop_forks(t_philo *philo, unsigned int left,

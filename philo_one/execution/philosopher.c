@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/05 12:49:53 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:19:36 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*philosopher(void *arg)
 	else
 		right = 0;
 	gettimeofday(&philo->data->start, NULL);
+	philo->time_since_last_meal = get_time_in_ms();
 	while (1)
 	{
-		philo->time = get_time_in_ms();
 		if (philo->status == THINKING && philo->data->dead == 0)
 			take_forks(philo, left, right);
 		if (philo->status == EATING && philo->data->dead == 0)
@@ -41,13 +41,7 @@ void	*philosopher(void *arg)
 			philo_think(philo);
 		if (philo->times_eaten == philo->data->number_of_times_to_eat)
 			break ;
-		if (philo->status == DEAD && philo->data->dead == 1)
-		{
-			get_total_time_in_ms(philo->data);
-			printf("%lu - [philosopher %d] died\n", philo->data->total_time, philo->id);
-			break ;
-		}
-		if (philo->data->dead > 0)
+		if (philo->data->dead == 1)
 			break ;
 	}
 	return (NULL);

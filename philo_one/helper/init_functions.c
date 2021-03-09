@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 15:56:39 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 16:18:43 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].data = data;
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
-		philo[index].time = 0;
+		philo[index].time_since_last_meal = 0;
 		index++;
 	}
 	return (philo);

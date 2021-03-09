@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/09 15:57:02 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/09 16:08:30 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SOURCE_C =	main.c \
 			helper/init_functions.c \
 			helper/ft_sleep.c \
 			helper/get_time_in_ms.c \
-			helper/check_alive.c \
 			helper/destroy_mutexes.c \
 			helper/print_message.c \
 			validate_arguments/validate_all_arguments.c \
@@ -30,7 +29,8 @@ SOURCE_C =	main.c \
 			execution/fork_actions.c \
 			execution/philo_eat.c \
 			execution/philo_sleep.c \
-			execution/philo_think.c
+			execution/philo_think.c \
+			execution/monitor.c \
 
 OBJECT_FILES = $(SOURCE_C:.c=.o)
 
