@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/04 17:22:12 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/09 11:35:36 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ int	execution(t_data *data, t_philo *philo)
 
 	threads = ft_calloc(sizeof(pthread_t), data->number_of_philosophers);
 	if (!threads)
+	{
+		free(data->forks);
+		free(philo);
 		return (0);
+	}
 	create_threads(threads, data->number_of_philosophers, philo);
 	wait_for_threads(threads, data->number_of_philosophers);
 	destroy_mutexes(data);
-//	free_memory();
+	free(threads);
+	free(data);
+	free(philo);
 	return (1);
 }
