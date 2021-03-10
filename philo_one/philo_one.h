@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 12:31:50 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 14:51:48 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			philo_think(t_philo *philo);
 int				ft_atoi(const char *str);
 void			*ft_calloc(size_t count, size_t size);
 void			init_struct(t_data *data);
-int				init_forks(t_data *data);
+int				init_mutexes(t_data *data);
 t_philo			*init_philosophers(t_data *data);
 void			ft_sleep(unsigned long time);
 void			get_total_time_in_ms(t_data *data);
