@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 16:19:36 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 11:56:32 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	*philosopher(void *arg)
 			philo_sleep(philo);
 		if (philo->status == THINKING && philo->data->dead == 0)
 			philo_think(philo);
-		if (philo->times_eaten == philo->data->number_of_times_to_eat)
-			break ;
 		if (philo->data->dead == 1)
+			break ;
+		if (philo->times_eaten == philo->data->number_of_times_to_eat)
 			break ;
 	}
 	return (NULL);

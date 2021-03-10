@@ -6,7 +6,7 @@
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/04 16:11:35 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/05 11:51:52 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 12:38:39 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	destroy_mutexes(t_data *data)
 		pthread_mutex_destroy(&data->forks[index]);
 		index++;
 	}
+	pthread_mutex_destroy(&data->print_mutex);
 }
