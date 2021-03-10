@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   init_functions.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
+/*   Updated: 2021/03/10 14:50:33 by gbouwen       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../philo_two.h"
+
+void	init_struct(t_data *data)
+{
+	data->number_of_philosophers = 0;
+	data->time_to_die = 0;
+	data->time_to_eat = 0;
+	data->time_to_sleep = 0;
+	data->number_of_times_to_eat = -1;
+	data->total_time = 0;
+	data->forks = NULL;
+	data->print_semaphore = NULL;
+	data->dead = 0;
+}
+
+int		init_semaphores(t_data *data)
+{
+
+}
+
+t_philo	*init_philosophers(t_data *data)
+{
+	t_philo			*philo;
+	unsigned int	index;
+
+	philo = ft_calloc(data->number_of_philosophers, sizeof(t_philo));
+	if (!philo)
+		return (NULL);
+	index = 0;
+	while (index < data->number_of_philosophers)
+	{
+		philo[index].id = index + 1;
+		philo[index].data = data;
+		philo[index].times_eaten = 0;
+		philo[index].status = THINKING;
+		philo[index].time_since_last_meal = 0;
+		index++;
+	}
+	return (philo);
+}
