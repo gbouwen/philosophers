@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 14:44:21 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 15:31:14 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	execution(t_data *data, t_philo *philo)
 	}
 	create_threads(threads, data->number_of_philosophers, philo);
 	wait_for_threads(threads, data->number_of_philosophers + 1);
-	//unlink_semaphores
+	unlink_semaphores(data);
 	free(threads);
 	free(philo);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 14:46:37 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 15:31:43 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <semaphore.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -72,6 +73,7 @@ void			philo_think(t_philo *philo);
 int				ft_atoi(const char *str);
 void			*ft_calloc(size_t count, size_t size);
 void			init_struct(t_data *data);
+int				init_semaphores(t_data *data);
 t_philo			*init_philosophers(t_data *data);
 void			ft_sleep(unsigned long time);
 void			get_total_time_in_ms(t_data *data);
@@ -79,5 +81,6 @@ unsigned long	get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
 void			print_message(t_philo *philo, int message_id);
+void			unlink_semaphores(t_data *data);
 
 #endif

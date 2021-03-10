@@ -6,11 +6,11 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/10 14:34:45 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/10 15:31:26 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo_one
+NAME = philo_two
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -pthread
 SOURCE_C =	main.c \
@@ -20,6 +20,7 @@ SOURCE_C =	main.c \
 			helper/ft_sleep.c \
 			helper/get_time_in_ms.c \
 			helper/print_message.c \
+			helper/unlink_semaphores.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
