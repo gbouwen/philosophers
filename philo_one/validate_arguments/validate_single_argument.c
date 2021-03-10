@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 12:16:44 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/03 11:49:56 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/10 12:46:00 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	correct_error_message(int index)
 		printf("[time_to_sleep] ");
 	else if (index == 5)
 		printf("[number_of_times_each_philosopher_must_eat] ");
-	printf("cannot be zero OR is not a numeric value\n");
+	printf("cannot be zero/less than zero OR is not a numeric value\n");
 }
 
 int	validate_single_argument(t_data *data, char *arg, int index)
@@ -46,7 +46,7 @@ int	validate_single_argument(t_data *data, char *arg, int index)
 	int	value;
 
 	value = ft_atoi(arg);
-	if (value == 0)
+	if (value <= 0)
 	{
 		correct_error_message(index);
 		return (0);
