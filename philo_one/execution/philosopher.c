@@ -6,11 +6,18 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:43:26 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 15:50:03 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
+
+size_t	get_right_fork(size_t philo_id, size_t number_of_philosophers)
+{
+	if (philo_id < numer_of_philosophers)
+		return (philo_id);
+	return (0);
+}
 
 void	*philosopher(void *arg)
 {
@@ -20,10 +27,7 @@ void	*philosopher(void *arg)
 
 	philo = arg;
 	left = philo->id - 1;
-	if (philo->id < philo->data->number_of_philosophers)
-		right = philo->id;
-	else
-		right = 0;
+	right = get_right_fork(philo->id, philo->data->number_of_philosophers);
 	philo->time_since_last_meal = get_time_in_ms();
 	while (1)
 	{
