@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 10:56:40 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 11:32:50 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int		init_semaphores(t_data *data)
 												data->number_of_philosophers);
 	if (data->forks == SEM_FAILED)
 		return (0);
+	sem_unlink("/forks");
 	data->print_semaphore = sem_open("/print", O_CREAT, S_IRUSR | S_IWUSR, 1);
 	if (data->print_semaphore == SEM_FAILED)
 		return (0);
+	sem_unlink("/print");
 	return (1);
 }
 
