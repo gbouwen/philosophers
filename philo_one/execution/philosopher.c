@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:00:23 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:05:15 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*philosopher(void *arg)
 {
-	t_philo			*philo;
-	unsigned int	left;
-	unsigned int	right;
+	t_philo	*philo;
+	size_t	left;
+	size_t	right;
 
 	philo = arg;
 	left = philo->id - 1;

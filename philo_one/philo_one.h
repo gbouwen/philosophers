@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:00:09 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:02:59 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_data
 {
-	unsigned int	number_of_philosophers;
+	size_t			number_of_philosophers;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
@@ -36,7 +36,7 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	unsigned int	id;
+	size_t			id;
 	t_data			*data;
 	int				times_eaten;
 	int				status;
@@ -60,10 +60,8 @@ int				validate_single_argument(t_data *data, char *arg, int index);
 int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
 void			*monitor(void *philo);
-void			take_forks(t_philo *philo, unsigned int left,
-														unsigned int right);
-void			drop_forks(t_philo *philo, unsigned int left,
-														unsigned int right);
+void			take_forks(t_philo *philo, size_t left, size_t right);
+void			drop_forks(t_philo *philo, size_t left, size_t right);
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);

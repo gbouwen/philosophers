@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 15:31:04 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:00:51 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:04:43 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	print_message(t_philo *philo, int message_id)
 	}
 	philo->data->total_time = get_time_in_ms() - philo->data->start_time;
 	if (message_id == TAKEN_FORK)
-		printf("%lu philosopher %d has taken a fork\n", philo->data->total_time, philo->id);
+		printf("%lu philosopher %zu has taken a fork\n", philo->data->total_time, philo->id);
 	else if (message_id == EATING)
-		printf("%lu philosopher %d is eating\n", philo->data->total_time, philo->id);
+		printf("%lu philosopher %zu is eating\n", philo->data->total_time, philo->id);
 	else if (message_id == SLEEPING)
-		printf("%lu philosopher %d is sleeping\n", philo->data->total_time, philo->id);
+		printf("%lu philosopher %zu is sleeping\n", philo->data->total_time, philo->id);
 	else if (message_id == THINKING)
-		printf("%lu philosopher %d is thinking\n", philo->data->total_time, philo->id);
+		printf("%lu philosopher %zu is thinking\n", philo->data->total_time, philo->id);
 	pthread_mutex_unlock(&(philo->data->print_mutex));
 }
