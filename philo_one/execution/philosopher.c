@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 15:50:03 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 17:29:38 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	get_right_fork(size_t philo_id, size_t number_of_philosophers)
 {
-	if (philo_id < numer_of_philosophers)
+	if (philo_id < number_of_philosophers)
 		return (philo_id);
 	return (0);
 }
