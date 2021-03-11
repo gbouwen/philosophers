@@ -6,7 +6,7 @@
 #    By: gbouwen <gbouwen@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/07/29 09:29:26 by gbouwen       #+#    #+#                  #
-#    Updated: 2021/03/10 15:31:26 by gbouwen       ########   odam.nl          #
+#    Updated: 2021/03/11 14:00:42 by gbouwen       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SOURCE_C =	main.c \
 			helper/ft_sleep.c \
 			helper/get_time_in_ms.c \
 			helper/print_message.c \
-			helper/unlink_semaphores.c \
+			helper/close_semaphores.c \
 			validate_arguments/validate_all_arguments.c \
 			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
