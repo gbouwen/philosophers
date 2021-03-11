@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 12:53:01 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:07:13 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	*monitor(void *arg)
 {
-	t_philo			*philo;
-	unsigned int	index;
-	unsigned int	number_of_philosophers;
-	long			now;
-	long			difference;
+	t_philo	*philo;
+	size_t	index;
+	size_t	number_of_philosophers;
+	long	now;
+	long	difference;
 
 	philo = arg;
 	index = 0;
@@ -36,7 +36,7 @@ void	*monitor(void *arg)
 				philo->data->dead = 1;
 				sem_wait(philo[index].data->print_semaphore);
 				philo[index].data->total_time = get_time_in_ms() - philo[index].data->start_time;
-				printf("%lu philosopher %d has died\n", philo[index].data->total_time, philo[index].id);
+				printf("%lu philosopher %zu has died\n", philo[index].data->total_time, philo[index].id);
 				sem_post(philo[index].data->print_semaphore);
 				return (NULL);
 			}

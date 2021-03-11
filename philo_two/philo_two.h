@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 12:47:46 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:06:26 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@
 
 typedef struct s_data
 {
-	unsigned int	number_of_philosophers;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	int				number_of_times_to_eat;
-	long			start_time;
-	long			total_time;
-	sem_t			*forks;
-	sem_t			*print_semaphore;
-	int				dead;
+	size_t	number_of_philosophers;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	int		number_of_times_to_eat;
+	long	start_time;
+	long	total_time;
+	sem_t	*forks;
+	sem_t	*print_semaphore;
+	int		dead;
 }	t_data;
 
 typedef struct s_philo
 {
-	unsigned int	id;
+	size_t			id;
 	t_data			*data;
 	int				times_eaten;
 	int				status;
