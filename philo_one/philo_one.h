@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 14:51:48 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:00:09 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_data
 	long			time_to_eat;
 	long			time_to_sleep;
 	int				number_of_times_to_eat;
-	struct timeval	start;
+	long			start_time;
 	long			total_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
@@ -75,9 +75,8 @@ void			*ft_calloc(size_t count, size_t size);
 void			init_struct(t_data *data);
 int				init_mutexes(t_data *data);
 t_philo			*init_philosophers(t_data *data);
-void			ft_sleep(unsigned long time);
-void			get_total_time_in_ms(t_data *data);
-unsigned long	get_time_in_ms(void);
+void			ft_sleep(long time);
+long			get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
 void			print_message(t_philo *philo, int message_id);

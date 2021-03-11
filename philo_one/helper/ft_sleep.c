@@ -6,27 +6,27 @@
 /*   By: gbouwen <marvin@codam.nl>                    +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/04 10:50:36 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/09 16:41:05 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 11:38:49 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-unsigned long	get_current_time(void)
+long	get_current_time(void)
 {
 	struct timeval	time;
-	unsigned long	now;
+	long			now;
 
 	gettimeofday(&time, NULL);
 	now = time.tv_sec * 1000 + time.tv_usec / 1000;
 	return (now * 1000);
 }
 
-void	ft_sleep(unsigned long time_to_sleep)
+void	ft_sleep(long time_to_sleep)
 {
-	unsigned long	start;
+	long	start;
 
 	start = get_current_time();
-	while (get_current_time() - start < time_to_sleep)
+	while ((get_current_time() - start) < time_to_sleep)
 		usleep(100);
 }

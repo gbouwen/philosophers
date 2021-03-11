@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 11:56:32 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:00:23 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*philosopher(void *arg)
 		right = philo->id;
 	else
 		right = 0;
-	gettimeofday(&philo->data->start, NULL);
+	philo->data->start_time = get_time_in_ms();
 	philo->time_since_last_meal = get_time_in_ms();
 	while (1)
 	{
