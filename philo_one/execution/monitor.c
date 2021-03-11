@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:05:14 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:46:27 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*monitor(void *arg)
 	t_philo			*philo;
 	size_t			index;
 	size_t			number_of_philosophers;
-	long			now;
 	long			difference;
 
 	philo = arg;
@@ -29,8 +28,7 @@ void	*monitor(void *arg)
 			return (NULL);
 		if (philo[index].status != EATING)
 		{
-			now = get_time_in_ms();
-			difference = now - philo[index].time_since_last_meal;
+			difference = get_time_in_ms() - philo[index].time_since_last_meal;
 			if (difference > philo[index].data->time_to_die)
 			{
 				philo->data->dead = 1;

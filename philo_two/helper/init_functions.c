@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 12:47:55 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 13:45:50 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_struct(t_data *data)
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = -1;
-	data->start_time = 0;
+	data->start_time = get_time_in_ms();
 	data->total_time = 0;
 	data->forks = NULL;
 	data->print_semaphore = NULL;
