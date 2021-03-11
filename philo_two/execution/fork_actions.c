@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 15:11:18 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/10 15:55:19 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/11 10:28:15 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	take_forks(t_philo *philo)
 {
-	sem_wait(philo->data->forks);
-	printf("semaphore\n");
+	printf("lets get a fork\n");
+	int result = sem_wait(philo->data->forks);
+	printf("%d\n", result);
 	print_message(philo, TAKEN_FORK);
 	sem_wait(philo->data->forks);
 	print_message(philo, TAKEN_FORK);
