@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:17:21 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 16:25:44 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	index = 0;
 	number_of_philosophers = philo[index].data->number_of_philosophers;
+	usleep(philo[index].data->time_to_die * 10);
 	while (1)
 	{
 		if (philo[index].times_eaten == philo[index].data->number_of_times_to_eat)
@@ -37,7 +38,6 @@ void	*monitor(void *arg)
 				sem_wait(philo[index].data->print_semaphore);
 				philo[index].data->total_time = get_time_in_ms() - philo[index].data->start_time;
 				printf("%lu philosopher %zu has died\n", philo[index].data->total_time, philo[index].id);
-				sem_post(philo[index].data->print_semaphore);
 				return (NULL);
 			}
 		}

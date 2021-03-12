@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 12:12:07 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 16:12:15 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	sem_t	*forks;
 	sem_t	*print_semaphore;
 	sem_t	*dead_semaphore;
+	int		*process_id;
 	int		dead;
 }	t_data;
 

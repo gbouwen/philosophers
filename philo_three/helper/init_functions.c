@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 11:19:39 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 16:15:05 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ t_philo	*init_philosophers(t_data *data)
 	philo = ft_calloc(data->number_of_philosophers, sizeof(t_philo));
 	if (!philo)
 		return (NULL);
+	data->process_id = ft_calloc(data->number_of_philosophers, sizeof(int));
+	if (!data->process_id)
+	{
+		free(philo);
+		return (NULL);
+	}
 	index = 0;
 	while (index < data->number_of_philosophers)
 	{
