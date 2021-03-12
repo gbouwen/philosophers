@@ -6,52 +6,42 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 14:04:05 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 12:12:24 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_three.h"
 
-static void	create_threads(pthread_t *threads, int amount, t_philo *philo)
+static void	create_processes(t_data *data, t_philo *philo)
 {
-	int	index;
+	size_t	index;
+	pid_t	pid;
 
 	index = 0;
-	while (index < amount)
+	pid = 0;
+	while (index < data->number_of_philosophers)
 	{
-		pthread_create(&threads[index], NULL, philosopher, &philo[index]);
+		pid = fork();
+		if (pid == 0)
+			philosopher(&philo[index]);
 		index++;
-		usleep(50);
 	}
-	pthread_create(&threads[index], NULL, monitor, philo);
 }
 
-static void	wait_for_threads(pthread_t *threads, int amount)
+static void	wait_for_processes(void)
 {
-	int	index;
+	pid_t	status;
 
-	index = 0;
-	while (index < amount)
-	{
-		pthread_join(threads[index], NULL);
-		index++;
-	}
+	status = 1;
+	while (status > 0)
+		status = waitpid(0, NULL, 0);
 }
 
 int	execution(t_data *data, t_philo *philo)
 {
-	pthread_t	*threads;
-
-	threads = ft_calloc(data->number_of_philosophers + 1, sizeof(pthread_t));
-	if (!threads)
-	{
-		free(philo);
-		return (0);
-	}
-	create_threads(threads, data->number_of_philosophers, philo);
-	wait_for_threads(threads, data->number_of_philosophers + 1);
+	create_processes(data, philo);
+	wait_for_processes();
 	close_semaphores(data);
-	free(threads);
 	free(philo);
 	return (1);
 }

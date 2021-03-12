@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 14:02:11 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 12:12:07 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include <semaphore.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_data
 {
@@ -33,6 +34,7 @@ typedef struct s_data
 	long	total_time;
 	sem_t	*forks;
 	sem_t	*print_semaphore;
+	sem_t	*dead_semaphore;
 	int		dead;
 }	t_data;
 
@@ -78,7 +80,6 @@ t_philo			*init_philosophers(t_data *data);
 void			ft_sleep(long time);
 long			get_time_in_ms(void);
 int				check_alive(t_philo *philo);
-void			destroy_mutexes(t_data *data);
 void			print_message(t_philo *philo, int message_id);
 void			close_semaphores(t_data *data);
 

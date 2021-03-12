@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:59:30 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/12 11:19:39 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_struct(t_data *data)
 	data->total_time = 0;
 	data->forks = NULL;
 	data->print_semaphore = NULL;
+	data->dead_semaphore = NULL;
 	data->dead = 0;
 }
 
@@ -37,6 +38,9 @@ int		init_semaphores(t_data *data)
 	if (data->print_semaphore == SEM_FAILED)
 		return (0);
 	sem_unlink("/print");
+	data->dead_semaphore = sem_open("/dead", O_CREAT, S_IRUSR | S_IWUSR, 1);
+	sem_unlink("/dead");
+	sem_wait(data->dead_semaphore);
 	return (1);
 }
 
