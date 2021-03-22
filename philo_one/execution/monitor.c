@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 14:43:21 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:55:09 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*monitor(void *arg)
 	while (philo->data->dead == 0 && philo->times_eaten !=
 									philo->data->number_of_times_to_eat)
 	{
+		usleep(500);
 		pthread_mutex_lock(&philo->data->alive_mutex);
 		difference = get_time_in_ms() - philo->time_since_last_meal;
 		if (difference > philo->data->time_to_die)
