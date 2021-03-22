@@ -6,16 +6,16 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/03 16:19:14 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:43:13 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:41:54 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_one.h"
 
-long	get_time_in_ms(void)
+long long	get_time_in_ms(void)
 {
 	struct timeval	now;
-	long			time;
+	long long		time;
 
 	gettimeofday(&now, NULL);
 	time = (now.tv_sec * 1000) + (now.tv_usec / 1000);

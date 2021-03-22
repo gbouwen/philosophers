@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 16:15:05 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 18:03:52 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	init_struct(t_data *data)
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = -1;
-	data->start_time = get_time_in_ms();
-	data->total_time = 0;
 	data->forks = NULL;
 	data->print_semaphore = NULL;
+	data->alive_semaphore = NULL;
 	data->dead_semaphore = NULL;
+	data->process_id = NULL;
 	data->dead = 0;
 }
 
@@ -38,6 +38,10 @@ int		init_semaphores(t_data *data)
 	if (data->print_semaphore == SEM_FAILED)
 		return (0);
 	sem_unlink("/print");
+	data->alive_semaphore = sem_open("/alive", O_CREAT, S_IRUSR | S_IWUSR, 1);
+	if (data->alive_semaphore == SEM_FAILED)
+		return (0);
+	sem_unlink("/alive");
 	data->dead_semaphore = sem_open("/dead", O_CREAT, S_IRUSR | S_IWUSR, 1);
 	sem_unlink("/dead");
 	sem_wait(data->dead_semaphore);
@@ -63,6 +67,8 @@ t_philo	*init_philosophers(t_data *data)
 	{
 		philo[index].id = index + 1;
 		philo[index].data = data;
+		philo[index].start_time = 0;
+		philo[index].total_time = 0;
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;

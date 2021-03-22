@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 16:26:23 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:45:54 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,19 @@
 
 void	*monitor(void *arg)
 {
-	t_philo	*philo;
-	long	now;
-	long	difference;
+	t_philo			*philo;
+	long long		difference;
 
 	philo = arg;
-	usleep(philo->data->time_to_die * 10);
-	while (1)
+	while (philo->data->dead == 0 && philo->times_eaten !=
+									philo->data->number_of_times_to_eat)
 	{
-		if (philo->times_eaten == philo->data->number_of_times_to_eat)
-			return (NULL);
-		if (philo->status != EATING)
-		{
-			now = get_time_in_ms();
-			difference = now - philo->time_since_last_meal;
-			if (difference > philo->data->time_to_die)
-			{
-				philo->data->dead = 1;
-				sem_wait(philo->data->print_semaphore);
-				philo->data->total_time = get_time_in_ms() - philo->data->start_time;
-				printf("%lu philosopher %zu has died\n", philo->data->total_time, philo->id);
-				sem_post(philo->data->dead_semaphore);
-				return (NULL);
-			}
-		}
-		usleep(50);
+		usleep(500);
+		sem_wait(philo->data->alive_semaphore);
+		difference = get_time_in_ms() - philo->time_since_last_meal;
+		if (difference > philo->data->time_to_die)
+			print_died(philo);
+		sem_post(philo->data->alive_semaphore);
 	}
 	return (NULL);
 }

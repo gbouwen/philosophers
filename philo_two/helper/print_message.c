@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 15:31:04 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:06:41 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:25:23 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,25 @@ void	print_message(t_philo *philo, int message_id)
 		sem_post(philo->data->print_semaphore);
 		return ;
 	}
-	philo->data->total_time = get_time_in_ms() - philo->data->start_time;
+	philo->total_time = get_time_in_ms() - philo->start_time;
 	if (message_id == TAKEN_FORK)
-		printf("%lu philosopher %zu has taken a fork\n", philo->data->total_time, philo->id);
+		printf("%llu philosopher %zu has taken a fork\n", philo->total_time, philo->id);
 	else if (message_id == EATING)
-		printf("%lu philosopher %zu is eating\n", philo->data->total_time, philo->id);
+		printf("%llu philosopher %zu is eating\n", philo->total_time, philo->id);
 	else if (message_id == SLEEPING)
-		printf("%lu philosopher %zu is sleeping\n", philo->data->total_time, philo->id);
+		printf("%llu philosopher %zu is sleeping\n", philo->total_time, philo->id);
 	else if (message_id == THINKING)
-		printf("%lu philosopher %zu is thinking\n", philo->data->total_time, philo->id);
+		printf("%llu philosopher %zu is thinking\n", philo->total_time, philo->id);
+	sem_post(philo->data->print_semaphore);
+}
+
+void	print_died(t_philo *philo)
+{
+	if (philo->data->dead == 1)
+		return ;
+	philo->data->dead = 1;
+	sem_wait(philo->data->print_semaphore);
+	philo->total_time = get_time_in_ms() - philo->start_time;
+	printf("%llu philosopher %zu has died\n", philo->total_time, philo->id);
 	sem_post(philo->data->print_semaphore);
 }

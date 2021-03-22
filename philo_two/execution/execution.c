@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 11:09:20 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:29:54 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	create_threads(pthread_t *threads, int amount, t_philo *philo)
 		index++;
 		usleep(50);
 	}
-	pthread_create(&threads[index], NULL, monitor, philo);
 }
 
 static void	wait_for_threads(pthread_t *threads, int amount)
@@ -42,14 +41,14 @@ int	execution(t_data *data, t_philo *philo)
 {
 	pthread_t	*threads;
 
-	threads = ft_calloc(data->number_of_philosophers + 1, sizeof(pthread_t));
+	threads = ft_calloc(data->number_of_philosophers, sizeof(pthread_t));
 	if (!threads)
 	{
 		free(philo);
 		return (0);
 	}
 	create_threads(threads, data->number_of_philosophers, philo);
-	wait_for_threads(threads, data->number_of_philosophers + 1);
+	wait_for_threads(threads, data->number_of_philosophers);
 	close_semaphores(data);
 	free(threads);
 	free(philo);

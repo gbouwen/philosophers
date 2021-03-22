@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 11:09:03 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:42:44 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,26 @@
 
 typedef struct s_data
 {
-	size_t	number_of_philosophers;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	int		number_of_times_to_eat;
-	long	start_time;
-	long	total_time;
-	sem_t	*forks;
-	sem_t	*print_semaphore;
-	int		dead;
+	size_t		number_of_philosophers;
+	long long	time_to_die;
+	long long	time_to_eat;
+	long long	time_to_sleep;
+	int			number_of_times_to_eat;
+	sem_t		*forks;
+	sem_t		*print_semaphore;
+	sem_t		*alive_semaphore;
+	int			dead;
 }	t_data;
 
 typedef struct s_philo
 {
 	size_t			id;
 	t_data			*data;
+	long long		start_time;
+	long long		total_time;
 	int				times_eaten;
 	int				status;
-	long			time_since_last_meal;
+	long long		time_since_last_meal;
 }	t_philo;
 
 # define THINKING 0
@@ -63,7 +64,6 @@ int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
 void			*monitor(void *philo);
 void			take_forks(t_philo *philo);
-void			drop_forks(t_philo *philo);
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
@@ -76,9 +76,10 @@ void			init_struct(t_data *data);
 int				init_semaphores(t_data *data);
 t_philo			*init_philosophers(t_data *data);
 void			ft_sleep(long time);
-long			get_time_in_ms(void);
+long long		get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			print_message(t_philo *philo, int message_id);
+void			print_died(t_philo *philo);
 void			close_semaphores(t_data *data);
 
 #endif

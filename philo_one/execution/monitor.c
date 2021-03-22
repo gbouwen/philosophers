@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 14:42:22 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 14:55:09 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:41:38 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*monitor(void *arg)
 {
 	t_philo			*philo;
-	long			difference;
+	long long		difference;
 
 	philo = arg;
 	while (philo->data->dead == 0 && philo->times_eaten !=

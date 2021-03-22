@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 14:32:18 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 17:42:01 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			init_struct(t_data *data);
 int				init_mutexes(t_data *data);
 t_philo			*init_philosophers(t_data *data);
 void			ft_sleep(long time);
-long			get_time_in_ms(void);
+long long		get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
 void			print_message(t_philo *philo, int message_id);
