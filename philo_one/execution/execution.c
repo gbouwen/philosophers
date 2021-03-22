@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:36:45 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 11:07:16 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 10:57:25 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	execution(t_data *data, t_philo *philo)
 		free(philo);
 		return (0);
 	}
+	data->start_time = get_time_in_ms();
 	create_threads(threads, data->number_of_philosophers, philo);
 	wait_for_threads(threads, data->number_of_philosophers + 1);
 	destroy_mutexes(data);

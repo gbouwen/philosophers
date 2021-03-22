@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/09 15:31:04 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:04:43 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 11:15:24 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,14 @@ void	print_message(t_philo *philo, int message_id)
 		printf("%lu philosopher %zu is sleeping\n", philo->data->total_time, philo->id);
 	else if (message_id == THINKING)
 		printf("%lu philosopher %zu is thinking\n", philo->data->total_time, philo->id);
+	pthread_mutex_unlock(&(philo->data->print_mutex));
+}
+
+void	print_died(t_philo *philo)
+{
+	philo->data->dead = 1;
+	pthread_mutex_lock(&philo->data->print_mutex);
+	philo->data->total_time = get_time_in_ms() - philo->data->start_time;
+	printf("%lu philosopher %zu has died\n", philo->data->total_time, philo->id);
 	pthread_mutex_unlock(&(philo->data->print_mutex));
 }

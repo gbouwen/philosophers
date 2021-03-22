@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fork_actions.c                                     :+:    :+:            */
+/*   philo_actions.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/03/03 15:11:18 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:03:55 by gbouwen       ########   odam.nl         */
+/*   Created: 2021/03/22 10:59:20 by gbouwen       #+#    #+#                 */
+/*   Updated: 2021/03/22 11:00:05 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,24 @@ void	drop_forks(t_philo *philo, size_t left, size_t right)
 	pthread_mutex_unlock(&philo->data->forks[left]);
 	pthread_mutex_unlock(&philo->data->forks[right]);
 	philo->status = SLEEPING;
+}
+
+void	philo_eat(t_philo *philo)
+{
+	print_message(philo, EATING);
+	philo->time_since_last_meal = get_time_in_ms();
+	ft_sleep(philo->data->time_to_eat * 1000);
+	philo->times_eaten++;
+}
+
+void	philo_sleep(t_philo *philo)
+{
+	print_message(philo, SLEEPING);
+	ft_sleep(philo->data->time_to_sleep * 1000);
+	philo->status = THINKING;
+}
+
+void	philo_think(t_philo *philo)
+{
+	print_message(philo, THINKING);
 }

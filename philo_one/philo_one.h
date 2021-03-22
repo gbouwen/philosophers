@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/11 13:02:59 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 11:17:16 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ long			get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
 void			print_message(t_philo *philo, int message_id);
+void			print_died(t_philo *philo);
 
 #endif

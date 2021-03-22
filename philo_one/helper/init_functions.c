@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/12 11:07:32 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 10:55:13 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_struct(t_data *data)
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = -1;
-	data->start_time = get_time_in_ms();
+	data->start_time = 0;
 	data->total_time = 0;
 	data->forks = NULL;
 	data->dead = 0;
@@ -27,7 +27,7 @@ void	init_struct(t_data *data)
 
 int	init_mutexes(t_data *data)
 {
-	unsigned int	index;
+	size_t	index;
 
 	index = 0;
 	data->forks = ft_calloc(data->number_of_philosophers, sizeof(pthread_mutex_t));
