@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/01 15:23:48 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 14:33:49 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:40:51 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	*philosopher(void *arg)
 {
-	t_philo	*philo;
+	t_philo		*philo;
+	pthread_t	monitor_thread;
 
 	philo = arg;
+	pthread_create(&monitor_thread, NULL, monitor, philo);
 	philo->start_time = get_time_in_ms();
 	philo->time_since_last_meal = philo->start_time;
 	while (philo->data->dead == 0 && philo->times_eaten !=
@@ -31,5 +33,6 @@ void	*philosopher(void *arg)
 		if (philo->status == THINKING && philo->data->dead == 0)
 			philo_think(philo);
 	}
+	pthread_join(monitor_thread, NULL);
 	return (NULL);
 }

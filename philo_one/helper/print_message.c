@@ -34,6 +34,8 @@ void	print_message(t_philo *philo, int message_id)
 
 void	print_died(t_philo *philo)
 {
+	if (philo->data->dead == 1)
+		return ;
 	philo->data->dead = 1;
 	pthread_mutex_lock(&philo->data->print_mutex);
 	philo->total_time = get_time_in_ms() - philo->start_time;
