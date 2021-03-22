@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 10:55:13 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:11:47 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	init_struct(t_data *data)
 	data->time_to_eat = 0;
 	data->time_to_sleep = 0;
 	data->number_of_times_to_eat = -1;
-	data->start_time = 0;
-	data->total_time = 0;
 	data->forks = NULL;
 	data->dead = 0;
 }
@@ -40,6 +38,7 @@ int	init_mutexes(t_data *data)
 		index++;
 	}
 	pthread_mutex_init(&(data->print_mutex), NULL);
+	pthread_mutex_init(&(data->alive_mutex), NULL);
 	return (1);
 }
 
@@ -59,6 +58,8 @@ t_philo	*init_philosophers(t_data *data)
 	{
 		philo[index].id = index + 1;
 		philo[index].data = data;
+		philo[index].start_time = 0;
+		philo[index].total_time = 0;
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;

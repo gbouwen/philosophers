@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 11:25:56 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 11:17:16 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:11:24 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ typedef struct s_data
 	long			time_to_eat;
 	long			time_to_sleep;
 	int				number_of_times_to_eat;
-	long			start_time;
-	long			total_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	alive_mutex;
 	int				dead;
 }	t_data;
 
@@ -38,6 +37,8 @@ typedef struct s_philo
 {
 	size_t			id;
 	t_data			*data;
+	long			start_time;
+	long			total_time;
 	int				times_eaten;
 	int				status;
 	long			time_since_last_meal;
@@ -61,8 +62,7 @@ int				execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
 void			*monitor(void *philo);
 void			take_forks(t_philo *philo, size_t left, size_t right);
-void			drop_forks(t_philo *philo, size_t left, size_t right);
-void			philo_eat(t_philo *philo);
+void			philo_eat(t_philo *philo, size_t left, size_t right);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
 

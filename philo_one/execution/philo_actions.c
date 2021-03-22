@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/03/22 10:59:20 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 11:00:05 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:16:05 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,22 @@ void	take_forks(t_philo *philo, size_t left, size_t right)
 	philo->status = EATING;
 }
 
-void	drop_forks(t_philo *philo, size_t left, size_t right)
+static void	drop_forks(t_philo *philo, size_t left, size_t right)
 {
 	pthread_mutex_unlock(&philo->data->forks[left]);
 	pthread_mutex_unlock(&philo->data->forks[right]);
 	philo->status = SLEEPING;
 }
 
-void	philo_eat(t_philo *philo)
+void	philo_eat(t_philo *philo, size_t left, size_t right)
 {
-	print_message(philo, EATING);
+	pthread_mutex_lock(&philo->data->alive_mutex);
 	philo->time_since_last_meal = get_time_in_ms();
+	print_message(philo, EATING);
+	pthread_mutex_unlock(&philo->data->alive_mutex);
 	ft_sleep(philo->data->time_to_eat * 1000);
 	philo->times_eaten++;
+	drop_forks(philo, left, right);
 }
 
 void	philo_sleep(t_philo *philo)
