@@ -6,7 +6,7 @@
 /*   By: gbouwen <gbouwen@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/02/26 14:25:37 by gbouwen       #+#    #+#                 */
-/*   Updated: 2021/03/22 14:11:47 by gbouwen       ########   odam.nl         */
+/*   Updated: 2021/03/22 14:33:41 by gbouwen       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,17 @@ int	init_mutexes(t_data *data)
 	return (1);
 }
 
+static size_t	get_right_fork_index(size_t id, size_t number_of_philosophers)
+{
+	if (id < number_of_philosophers)
+		return (id);
+	return (0);
+}
+
 t_philo	*init_philosophers(t_data *data)
 {
-	t_philo			*philo;
-	unsigned int	index;
+	t_philo	*philo;
+	size_t	index;
 
 	philo = ft_calloc(data->number_of_philosophers, sizeof(t_philo));
 	if (!philo)
@@ -60,6 +67,9 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].data = data;
 		philo[index].start_time = 0;
 		philo[index].total_time = 0;
+		philo[index].left = philo[index].id - 1;
+		philo[index].right = get_right_fork_index(philo[index].id,
+										data->number_of_philosophers);
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;
