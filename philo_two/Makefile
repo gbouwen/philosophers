@@ -22,7 +22,6 @@ SOURCE_C =	main.c \
 			helper/print_message.c \
 			helper/close_semaphores.c \
 			validate_arguments/validate_all_arguments.c \
-			validate_arguments/incorrect_amount_of_arguments.c \
 			validate_arguments/validate_single_argument.c \
 			execution/execution.c \
 			execution/philosopher.c \
