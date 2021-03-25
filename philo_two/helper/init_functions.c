@@ -24,10 +24,10 @@ void	init_struct(t_data *data)
 	data->dead = 0;
 }
 
-int		init_semaphores(t_data *data)
+int	init_semaphores(t_data *data)
 {
 	data->forks = sem_open("/forks", O_CREAT, S_IRUSR | S_IWUSR,
-												data->number_of_philosophers);
+			data->number_of_philosophers);
 	if (data->forks == SEM_FAILED)
 		return (0);
 	sem_unlink("/forks");

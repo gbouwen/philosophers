@@ -28,7 +28,8 @@ int	init_mutexes(t_data *data)
 	size_t	index;
 
 	index = 0;
-	data->forks = ft_calloc(data->number_of_philosophers, sizeof(pthread_mutex_t));
+	data->forks = ft_calloc(data->number_of_philosophers,
+			sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (0);
 	while (index < data->number_of_philosophers)
@@ -69,7 +70,7 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].total_time = 0;
 		philo[index].left = philo[index].id - 1;
 		philo[index].right = get_right_fork_index(philo[index].id,
-										data->number_of_philosophers);
+				data->number_of_philosophers);
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;

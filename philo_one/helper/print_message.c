@@ -15,20 +15,25 @@
 void	print_message(t_philo *philo, int message_id)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	if (philo->data->dead == 1 || philo->times_eaten == philo->data->number_of_times_to_eat)
+	if (philo->data->dead == 1 || philo->times_eaten
+		== philo->data->number_of_times_to_eat)
 	{
 		pthread_mutex_unlock(&(philo->data->print_mutex));
 		return ;
 	}
 	philo->total_time = get_time_in_ms() - philo->start_time;
 	if (message_id == TAKEN_FORK)
-		printf("%llu philosopher %zu has taken a fork\n", philo->total_time, philo->id);
+		printf("%llu philosopher %zu has taken a fork\n", philo->total_time,
+			philo->id);
 	else if (message_id == EATING)
-		printf("%llu philosopher %zu is eating\n", philo->total_time, philo->id);
+		printf("%llu philosopher %zu is eating\n", philo->total_time,
+			philo->id);
 	else if (message_id == SLEEPING)
-		printf("%llu philosopher %zu is sleeping\n", philo->total_time, philo->id);
+		printf("%llu philosopher %zu is sleeping\n", philo->total_time,
+			philo->id);
 	else if (message_id == THINKING)
-		printf("%llu philosopher %zu is thinking\n", philo->total_time, philo->id);
+		printf("%llu philosopher %zu is thinking\n", philo->total_time,
+			philo->id);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
