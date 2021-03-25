@@ -21,8 +21,8 @@ void	*philosopher(void *arg)
 	pthread_create(&monitor_thread, NULL, monitor, philo);
 	philo->start_time = get_time_in_ms();
 	philo->time_since_last_meal = philo->start_time;
-	while (philo->data->dead == 0 && philo->times_eaten !=
-								philo->data->number_of_times_to_eat)
+	while (philo->data->dead == 0 && philo->times_eaten
+		!= philo->data->number_of_times_to_eat)
 	{
 		if (philo->status == THINKING && philo->data->dead == 0)
 			take_forks(philo);

@@ -18,8 +18,8 @@ void	*monitor(void *arg)
 	long long		difference;
 
 	philo = arg;
-	while (philo->data->dead == 0 && philo->times_eaten !=
-									philo->data->number_of_times_to_eat)
+	while (philo->data->dead == 0 && philo->times_eaten
+		!= philo->data->number_of_times_to_eat)
 	{
 		usleep(500);
 		sem_wait(philo->data->alive_semaphore);

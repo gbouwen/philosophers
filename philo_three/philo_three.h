@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_TWO_H
-# define PHILO_TWO_H
+#ifndef PHILO_THREE_H
+# define PHILO_THREE_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,6 +22,8 @@
 # include <semaphore.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <signal.h>
+# include <sys/types.h>
 
 typedef struct s_data
 {
@@ -58,7 +60,6 @@ typedef struct s_philo
 // validate_arguments
 
 int				validate_all_arguments(t_data *data, int ac, char **av);
-void			incorrect_amount_of_arguments(char *arg);
 int				validate_single_argument(t_data *data, char *arg, int index);
 
 // execution
