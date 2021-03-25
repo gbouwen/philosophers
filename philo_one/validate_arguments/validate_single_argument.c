@@ -41,12 +41,26 @@ static void	correct_error_message(int index)
 	printf("cannot be zero/less than zero OR is not a numeric value\n");
 }
 
+static int	check_if_only_digits(char *arg)
+{
+	int	index;
+
+	index = 0;
+	while (arg[index] != '\0')
+	{
+		if (arg[index] < '0' || arg[index] > '9')
+			return (-1);
+		index++;
+	}
+	return (0);
+}
+
 int	validate_single_argument(t_data *data, char *arg, int index)
 {
 	int	value;
 
 	value = ft_atoi(arg);
-	if (value <= 0)
+	if (value <= 0 || check_if_only_digits(arg) == -1)
 	{
 		correct_error_message(index);
 		return (0);
