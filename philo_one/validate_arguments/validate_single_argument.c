@@ -38,7 +38,8 @@ static void	correct_error_message(int index)
 		printf("[time_to_sleep] ");
 	else if (index == 5)
 		printf("[number_of_times_each_philosopher_must_eat] ");
-	printf("cannot be zero/less than zero OR is not a numeric value\n");
+	printf("cannot be zero/less than zero OR ");
+	printf("is not only a numeric value\n");
 }
 
 static int	check_if_only_digits(char *arg)

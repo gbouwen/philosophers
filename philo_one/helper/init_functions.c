@@ -31,16 +31,23 @@ int	init_mutexes(t_data *data)
 	data->forks = ft_calloc(data->number_of_philosophers,
 			sizeof(pthread_mutex_t));
 	if (!data->forks)
-		return (0);
+		return (-1);
 	while (index < data->number_of_philosophers)
 	{
-		if (pthread_mutex_init(&(data->forks[index]), NULL) != 0)
-			return (0);
+		if (pthread_mutex_init(&data->forks[index], NULL) != 0)
+		{
+			free(data->forks);
+			return (-1);
+		}
 		index++;
 	}
-	pthread_mutex_init(&(data->print_mutex), NULL);
-	pthread_mutex_init(&(data->alive_mutex), NULL);
-	return (1);
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0
+		|| pthread_mutex_init(&data->alive_mutex, NULL) != 0)
+	{
+		free(data->forks);
+		return (-1);
+	}
+	return (0);
 }
 
 static size_t	get_right_fork_index(size_t id, size_t number_of_philosophers)

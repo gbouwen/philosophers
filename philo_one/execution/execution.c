@@ -12,16 +12,21 @@
 
 #include "../philo_one.h"
 
-static void	create_threads(pthread_t *threads, int amount, t_philo *philo)
+static int	create_threads(pthread_t *threads, int amount, t_philo *philo)
 {
 	int	index;
+	int	ret;
 
 	index = 0;
+	ret = 0;
 	while (index < amount)
 	{
-		pthread_create(&threads[index], NULL, philosopher, &philo[index]);
+		ret = pthread_create(&threads[index], NULL, philosopher, &philo[index]);
+		if (ret != 0)
+			return (-1);
 		index++;
 	}
+	return (0);
 }
 
 static void	wait_for_threads(pthread_t *threads, int amount)
@@ -31,12 +36,13 @@ static void	wait_for_threads(pthread_t *threads, int amount)
 	index = 0;
 	while (index < amount)
 	{
-		pthread_join(threads[index], NULL);
+		if (pthread_join(threads[index], NULL) != 0)
+			return ;
 		index++;
 	}
 }
 
-int	execution(t_data *data, t_philo *philo)
+void	execution(t_data *data, t_philo *philo)
 {
 	pthread_t	*threads;
 
@@ -45,13 +51,12 @@ int	execution(t_data *data, t_philo *philo)
 	{
 		free(data->forks);
 		free(philo);
-		return (0);
+		return ;
 	}
-	create_threads(threads, data->number_of_philosophers, philo);
-	wait_for_threads(threads, data->number_of_philosophers);
+	if (create_threads(threads, data->number_of_philosophers, philo) == 0)
+		wait_for_threads(threads, data->number_of_philosophers);
 	destroy_mutexes(data);
 	free(threads);
 	free(data->forks);
 	free(philo);
-	return (1);
 }
