@@ -18,14 +18,16 @@ void	*monitor(void *arg)
 	long long		difference;
 
 	philo = arg;
-	while (philo->data->dead == 0 && philo->times_eaten
-		!= philo->data->number_of_times_to_eat)
+	while (1)
 	{
 		usleep(500);
 		pthread_mutex_lock(&philo->data->alive_mutex);
 		difference = get_time_in_ms() - philo->time_since_last_meal;
 		if (difference > philo->data->time_to_die)
+		{
 			print_died(philo);
+			return (NULL);
+		}
 		pthread_mutex_unlock(&philo->data->alive_mutex);
 	}
 	return (NULL);
