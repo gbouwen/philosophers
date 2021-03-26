@@ -12,10 +12,10 @@
 
 #include "../philo_three.h"
 
-long	get_time_in_ms(void)
+long long	get_time_in_ms(void)
 {
 	struct timeval	now;
-	long			time;
+	long long		time;
 
 	gettimeofday(&now, NULL);
 	time = now.tv_sec * 1000 + now.tv_usec / 1000;

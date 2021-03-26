@@ -74,7 +74,7 @@ void			*ft_calloc(size_t count, size_t size);
 void			init_struct(t_data *data);
 int				init_mutexes(t_data *data);
 t_philo			*init_philosophers(t_data *data);
-void			ft_sleep(long time);
+void			ft_sleep(long long time_to_sleep);
 long long		get_time_in_ms(void);
 int				check_alive(t_philo *philo);
 void			destroy_mutexes(t_data *data);
