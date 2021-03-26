@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 	philo = init_philosophers(&data);
 	if (philo == NULL)
 	{
+		destroy_mutexes(&data);
 		free(data.forks);
 		return (-1);
 	}

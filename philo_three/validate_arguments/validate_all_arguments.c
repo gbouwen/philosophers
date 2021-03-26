@@ -28,13 +28,13 @@ int	validate_all_arguments(t_data *data, int ac, char **av)
 	if (ac != 5 && ac != 6)
 	{
 		incorrect_amount_of_arguments(av[0]);
-		return (0);
+		return (-1);
 	}
 	while (av[index] != NULL)
 	{
-		if (validate_single_argument(data, av[index], index) == 0)
-			return (0);
+		if (validate_single_argument(data, av[index], index) == -1)
+			return (-1);
 		index++;
 	}
-	return (1);
+	return (0);
 }

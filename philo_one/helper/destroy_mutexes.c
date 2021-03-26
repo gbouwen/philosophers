@@ -23,4 +23,5 @@ void	destroy_mutexes(t_data *data)
 		index++;
 	}
 	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->alive_mutex);
 }
