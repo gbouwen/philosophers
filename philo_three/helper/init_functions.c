@@ -22,7 +22,7 @@ void	init_struct(t_data *data)
 	data->forks = NULL;
 	data->print_semaphore = NULL;
 	data->alive_semaphore = NULL;
-	data->dead_semaphore = NULL;
+	data->done_semaphore = NULL;
 	data->process_id = NULL;
 	data->dead = 0;
 }
@@ -42,11 +42,11 @@ int	init_semaphores(t_data *data)
 	if (data->alive_semaphore == SEM_FAILED)
 		return (-1);
 	sem_unlink("/alive");
-	data->dead_semaphore = sem_open("/dead", O_CREAT, S_IRUSR | S_IWUSR, 1);
-	if (data->dead_semaphore == SEM_FAILED)
+	data->done_semaphore = sem_open("/done", O_CREAT, S_IRUSR | S_IWUSR, 1);
+	if (data->done_semaphore == SEM_FAILED)
 		return (-1);
-	sem_unlink("/dead");
-	sem_wait(data->dead_semaphore);
+	sem_unlink("/done");
+	sem_wait(data->done_semaphore);
 	return (0);
 }
 

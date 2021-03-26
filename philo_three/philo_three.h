@@ -35,7 +35,7 @@ typedef struct s_data
 	sem_t		*forks;
 	sem_t		*print_semaphore;
 	sem_t		*alive_semaphore;
-	sem_t		*dead_semaphore;
+	sem_t		*done_semaphore;
 	int			*process_id;
 	int			dead;
 }	t_data;

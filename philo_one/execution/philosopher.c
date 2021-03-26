@@ -18,7 +18,8 @@ void	*philosopher(void *arg)
 	pthread_t	monitor_thread;
 
 	philo = arg;
-	pthread_create(&monitor_thread, NULL, monitor, philo);
+	if (pthread_create(&monitor_thread, NULL, monitor, philo) != 0)
+		return (NULL);
 	philo->start_time = get_time_in_ms();
 	philo->time_since_last_meal = philo->start_time;
 	while (philo->data->dead == 0 && philo->times_eaten

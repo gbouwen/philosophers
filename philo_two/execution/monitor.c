@@ -18,16 +18,14 @@ void	*monitor(void *arg)
 	long long		difference;
 
 	philo = arg;
-	while (1)
+	while (philo->data->dead == 0 && philo->times_eaten
+		!= philo->data->number_of_times_to_eat)
 	{
 		usleep(500);
 		sem_wait(philo->data->alive_semaphore);
 		difference = get_time_in_ms() - philo->time_since_last_meal;
 		if (difference > philo->data->time_to_die)
-		{
 			print_died(philo);
-			return (NULL);
-		}
 		sem_post(philo->data->alive_semaphore);
 	}
 	return (NULL);

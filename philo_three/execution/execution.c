@@ -25,7 +25,10 @@ static int	create_processes(t_data *data, t_philo *philo)
 		if (pid == -1)
 			return (-1);
 		if (pid == 0)
+		{
 			philosopher(&philo[index]);
+			exit(0);
+		}
 		data->process_id[index] = pid;
 		index++;
 	}
@@ -59,8 +62,13 @@ static void	wait_for_processes(t_data *data, t_philo *philo)
 {
 	pthread_t	thread;
 
-	pthread_create(&thread, NULL, wait_for_children, NULL);
-	sem_wait(data->dead_semaphore);
+	if (pthread_create(&thread, NULL, wait_for_children, NULL) != 0)
+	{
+		free(philo);
+		free(data->process_id);
+		return ;
+	}
+	sem_wait(data->done_semaphore);
 	close_semaphores(data);
 	free(philo);
 	kill_all_children(data);
