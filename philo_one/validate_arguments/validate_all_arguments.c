@@ -32,7 +32,7 @@ int	validate_all_arguments(t_data *data, int ac, char **av)
 	}
 	while (av[index] != NULL)
 	{
-		if (validate_single_argument(data, av[index], index) == 0)
+		if (validate_single_argument(data, av[index], index) == -1)
 			return (-1);
 		index++;
 	}
