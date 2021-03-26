@@ -29,17 +29,17 @@ int	init_semaphores(t_data *data)
 	data->forks = sem_open("/forks", O_CREAT, S_IRUSR | S_IWUSR,
 			data->number_of_philosophers);
 	if (data->forks == SEM_FAILED)
-		return (0);
+		return (-1);
 	sem_unlink("/forks");
 	data->print_semaphore = sem_open("/print", O_CREAT, S_IRUSR | S_IWUSR, 1);
 	if (data->print_semaphore == SEM_FAILED)
-		return (0);
+		return (-1);
 	sem_unlink("/print");
 	data->alive_semaphore = sem_open("/alive", O_CREAT, S_IRUSR | S_IWUSR, 1);
 	if (data->alive_semaphore == SEM_FAILED)
-		return (0);
+		return (-1);
 	sem_unlink("/alive");
-	return (1);
+	return (0);
 }
 
 t_philo	*init_philosophers(t_data *data)

@@ -18,14 +18,16 @@ int	main(int ac, char **av)
 	t_philo	*philo;
 
 	init_struct(&data);
-	if (validate_all_arguments(&data, ac, av) == 0)
+	if (validate_all_arguments(&data, ac, av) == -1)
 		return (-1);
-	if (init_semaphores(&data) == 0)
+	if (init_semaphores(&data) == -1)
 		return (-1);
 	philo = init_philosophers(&data);
 	if (philo == NULL)
+	{
+		close_semaphores(&data);
 		return (-1);
-	if (execution(&data, philo) == 0)
-		return (-1);
+	}
+	execution(&data, philo);
 	return (0);
 }

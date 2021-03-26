@@ -59,7 +59,7 @@ int				validate_single_argument(t_data *data, char *arg, int index);
 
 // execution
 
-int				execution(t_data *data, t_philo *philo);
+void			execution(t_data *data, t_philo *philo);
 void			*philosopher(void *data);
 void			*monitor(void *philo);
 void			take_forks(t_philo *philo);

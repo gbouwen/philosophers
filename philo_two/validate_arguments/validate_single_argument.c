@@ -63,9 +63,9 @@ int	validate_single_argument(t_data *data, char *arg, int index)
 	if (value <= 0 || check_if_only_digits(arg) == -1)
 	{
 		correct_error_message(index);
-		return (0);
+		return (-1);
 	}
 	else
 		add_to_struct(data, value, index);
-	return (1);
+	return (0);
 }
