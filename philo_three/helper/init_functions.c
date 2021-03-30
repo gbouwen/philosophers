@@ -23,7 +23,6 @@ void	init_struct(t_data *data)
 	data->print_semaphore = NULL;
 	data->alive_semaphore = NULL;
 	data->done_semaphore = NULL;
-	data->process_id = NULL;
 	data->dead = 0;
 }
 
@@ -58,12 +57,6 @@ t_philo	*init_philosophers(t_data *data)
 	philo = ft_calloc(data->number_of_philosophers, sizeof(t_philo));
 	if (!philo)
 		return (NULL);
-	data->process_id = ft_calloc(data->number_of_philosophers, sizeof(int));
-	if (!data->process_id)
-	{
-		free(philo);
-		return (NULL);
-	}
 	index = 0;
 	while (index < data->number_of_philosophers)
 	{
@@ -74,6 +67,7 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;
+		philo[index].process_id = 0;
 		index++;
 	}
 	return (philo);

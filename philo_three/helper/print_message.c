@@ -45,6 +45,5 @@ void	print_died(t_philo *philo)
 	sem_wait(philo->data->print_semaphore);
 	philo->total_time = get_time_in_ms() - philo->start_time;
 	printf("%llu philosopher %zu has died\n", philo->total_time, philo->id);
-	sem_post(philo->data->print_semaphore);
 	sem_post(philo->data->done_semaphore);
 }

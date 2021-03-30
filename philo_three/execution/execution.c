@@ -29,50 +29,55 @@ static int	create_processes(t_data *data, t_philo *philo)
 			philosopher(&philo[index]);
 			exit(0);
 		}
-		data->process_id[index] = pid;
+		philo[index].process_id = pid;
 		index++;
 	}
 	return (0);
 }
 
-static void	*wait_for_children(void *arg)
+static void	wait_for_children(void)
 {
 	pid_t	status;
 
-	(void)arg;
 	status = 1;
 	while (status > 0)
 		status = waitpid(0, NULL, 0);
-	return (NULL);
 }
 
-static void	kill_all_children(t_data *data)
+static void	kill_all_children(t_philo *philo)
 {
 	size_t	index;
 
 	index = 0;
-	while (index < data->number_of_philosophers)
+	while (index < philo->data->number_of_philosophers)
 	{
-		kill(data->process_id[index], SIGKILL);
+		kill(philo[index].process_id, SIGKILL);
 		index++;
 	}
+}
+
+static void	*check_if_dead(void *arg)
+{
+	t_philo *philo;
+
+	philo = arg;
+	sem_wait(philo->data->done_semaphore);
+	kill_all_children(philo);
+	return (NULL);
 }
 
 static void	wait_for_processes(t_data *data, t_philo *philo)
 {
 	pthread_t	thread;
 
-	if (pthread_create(&thread, NULL, wait_for_children, NULL) != 0)
+	if (pthread_create(&thread, NULL, check_if_dead, philo) != 0)
 	{
 		free(philo);
-		free(data->process_id);
 		return ;
 	}
-	sem_wait(data->done_semaphore);
+	wait_for_children();
 	close_semaphores(data);
 	free(philo);
-	kill_all_children(data);
-	free(data->process_id);
 	pthread_join(thread, NULL);
 }
 
@@ -84,6 +89,5 @@ void	execution(t_data *data, t_philo *philo)
 	{
 		close_semaphores(data);
 		free(philo);
-		free(data->process_id);
 	}
 }

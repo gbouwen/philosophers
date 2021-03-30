@@ -25,7 +25,7 @@ static int	create_threads(pthread_t *threads, int amount, t_philo *philo)
 		if (ret != 0)
 			return (-1);
 		index++;
-		usleep(50);
+		usleep(100);
 	}
 	return (0);
 }

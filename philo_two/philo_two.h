@@ -44,6 +44,7 @@ typedef struct s_philo
 	int				times_eaten;
 	int				status;
 	long long		time_since_last_meal;
+	int				has_fork;
 }	t_philo;
 
 # define THINKING 0

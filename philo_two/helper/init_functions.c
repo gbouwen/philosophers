@@ -60,6 +60,7 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].times_eaten = 0;
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;
+		philo[index].has_fork = 0;
 		index++;
 	}
 	return (philo);

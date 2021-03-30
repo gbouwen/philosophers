@@ -36,7 +36,6 @@ typedef struct s_data
 	sem_t		*print_semaphore;
 	sem_t		*alive_semaphore;
 	sem_t		*done_semaphore;
-	int			*process_id;
 	int			dead;
 }	t_data;
 
@@ -49,6 +48,7 @@ typedef struct s_philo
 	int			times_eaten;
 	int			status;
 	long		time_since_last_meal;
+	int			process_id;
 }	t_philo;
 
 # define THINKING 0

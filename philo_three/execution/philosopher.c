@@ -35,6 +35,5 @@ void	*philosopher(void *arg)
 			philo_think(philo);
 	}
 	pthread_join(monitor_thread, NULL);
-	sem_post(philo->data->done_semaphore);
 	return (NULL);
 }
