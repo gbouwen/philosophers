@@ -42,6 +42,11 @@ void	print_died(t_philo *philo)
 	if (philo->data->dead == 1)
 		return ;
 	philo->data->dead = 1;
+	while (philo->has_fork != 0)
+	{
+		sem_post(philo->data->forks);
+		philo->has_fork--;
+	}
 	sem_wait(philo->data->print_semaphore);
 	philo->total_time = get_time_in_ms() - philo->start_time;
 	printf("%llu philosopher %zu has died\n", philo->total_time, philo->id);

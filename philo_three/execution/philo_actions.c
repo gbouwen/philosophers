@@ -15,8 +15,10 @@
 void	take_forks(t_philo *philo)
 {
 	sem_wait(philo->data->forks);
+	philo->has_fork++;
 	print_message(philo, TAKEN_FORK);
 	sem_wait(philo->data->forks);
+	philo->has_fork++;
 	print_message(philo, TAKEN_FORK);
 	if (philo->data->dead == 1)
 	{
@@ -30,7 +32,9 @@ void	take_forks(t_philo *philo)
 static void	drop_forks(t_philo *philo)
 {
 	sem_post(philo->data->forks);
+	philo->has_fork--;
 	sem_post(philo->data->forks);
+	philo->has_fork--;
 	philo->status = SLEEPING;
 }
 

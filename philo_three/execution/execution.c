@@ -31,38 +31,38 @@ static int	create_processes(t_data *data, t_philo *philo)
 		}
 		philo[index].process_id = pid;
 		index++;
+		usleep(300);
 	}
 	return (0);
 }
 
-static void	wait_for_children(void)
+static void	wait_for_children(t_data *data)
 {
 	pid_t	status;
 
 	status = 1;
 	while (status > 0)
 		status = waitpid(0, NULL, 0);
-}
-
-static void	kill_all_children(t_philo *philo)
-{
-	size_t	index;
-
-	index = 0;
-	while (index < philo->data->number_of_philosophers)
-	{
-		kill(philo[index].process_id, SIGKILL);
-		index++;
-	}
+	sem_post(data->done_semaphore);
+	data->all_philos_done_eating = 1;
 }
 
 static void	*check_if_dead(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
+	size_t	index;
 
 	philo = arg;
+	index = 0;
 	sem_wait(philo->data->done_semaphore);
-	kill_all_children(philo);
+	if (philo->data->all_philos_done_eating == 0)
+	{
+		while (index < philo->data->number_of_philosophers)
+		{
+			kill(philo[index].process_id, SIGKILL);
+			index++;
+		}
+	}
 	return (NULL);
 }
 
@@ -75,7 +75,7 @@ static void	wait_for_processes(t_data *data, t_philo *philo)
 		free(philo);
 		return ;
 	}
-	wait_for_children();
+	wait_for_children(data);
 	close_semaphores(data);
 	free(philo);
 	pthread_join(thread, NULL);

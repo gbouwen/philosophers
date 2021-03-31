@@ -24,6 +24,7 @@ void	init_struct(t_data *data)
 	data->alive_semaphore = NULL;
 	data->done_semaphore = NULL;
 	data->dead = 0;
+	data->all_philos_done_eating = 0;
 }
 
 int	init_semaphores(t_data *data)
@@ -68,6 +69,7 @@ t_philo	*init_philosophers(t_data *data)
 		philo[index].status = THINKING;
 		philo[index].time_since_last_meal = 0;
 		philo[index].process_id = 0;
+		philo[index].has_fork = 0;
 		index++;
 	}
 	return (philo);
