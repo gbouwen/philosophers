@@ -48,8 +48,8 @@ void	philo_eat(t_philo *philo, size_t left, size_t right)
 {
 	pthread_mutex_lock(&philo->data->alive_mutex);
 	philo->time_since_last_meal = get_time_in_ms();
-	print_message(philo, EATING);
 	pthread_mutex_unlock(&philo->data->alive_mutex);
+	print_message(philo, EATING);
 	ft_sleep(philo->data->time_to_eat * 1000);
 	philo->times_eaten++;
 	drop_forks(philo, left, right);

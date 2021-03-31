@@ -40,8 +40,10 @@ static void	drop_forks(t_philo *philo)
 
 void	philo_eat(t_philo *philo)
 {
-	print_message(philo, EATING);
+	sem_wait(philo->data->alive_semaphore);
 	philo->time_since_last_meal = get_time_in_ms();
+	sem_post(philo->data->alive_semaphore);
+	print_message(philo, EATING);
 	ft_sleep(philo->data->time_to_eat * 1000);
 	philo->times_eaten++;
 	drop_forks(philo);
